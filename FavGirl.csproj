@@ -1,183 +1,66 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+<Project Sdk="Microsoft.NET.Sdk">
+
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FF5F7169-5675-4024-A0CB-E0237D40BF6B}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>FavGirl</RootNamespace>
-    <AssemblyName>FavGirl</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
+
+  <Target Name="CopyDLLs" AfterTargets="Build">
+    <Copy SourceFiles="$(TargetDir)$(ProjectName).dll" DestinationFolder="$(MD_NET6_DIRECTORY)\Mods" />
+    <Message Text="Copied DLL -&gt; $(MD_NET6_DIRECTORY)\Mods\$(ProjectName).dll" Importance="High" />
+  </Target>
+
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\0Harmony.dll</HintPath>
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass, Version=2.0.0.668, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
-    <Reference Include="Headquarters">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\Mods\Headquarters.dll</HintPath>
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\Il2CppInterop.Runtime.dll</HintPath>
     </Reference>
     <Reference Include="Il2Cppmscorlib">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2Cppmscorlib.dll</HintPath>
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2Cppmscorlib.dll</HintPath>
     </Reference>
-    <Reference Include="Il2CppNewtonsoft.Json, Version=12.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppNewtonsoft.Json.dll</HintPath>
+    <Reference Include="Il2CppPeroTools2">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Il2CppPeroTools2.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppPeroTools2.Resources">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Il2CppPeroTools2.Resources.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSirenix.Serialization">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\Il2CppSirenix.Serialization.dll</HintPath>
     </Reference>
     <Reference Include="Il2CppSystem">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Configuration">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Configuration.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Core">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Diagnostics.Debug">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Diagnostics.Debug.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Diagnostics.Tracing">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Diagnostics.Tracing.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Globalization">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Globalization.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Memory">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Memory.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Reflection">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Reflection.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Resources.ResourceManager">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Resources.ResourceManager.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Runtime">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Runtime.CompilerServices.Unsafe">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Runtime.Extensions">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Runtime.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Runtime.InteropServices">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Runtime.InteropServices.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Runtime.Serialization">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Runtime.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Threading">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Threading.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Xml">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Xml.dll</HintPath>
-    </Reference>
-    <Reference Include="Il2CppSystem.Xml.Linq">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Il2CppSystem.Xml.Linq.dll</HintPath>
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\Il2CppSystem.dll</HintPath>
     </Reference>
     <Reference Include="MelonLoader">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\MelonLoader.dll</HintPath>
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\net6\MelonLoader.dll</HintPath>
     </Reference>
-    <Reference Include="ModLoader">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\_libs\ModLoader.dll</HintPath>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\UnityEngine.AnimationModule.dll</HintPath>
     </Reference>
-    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(MD_NET6_DIRECTORY)\MelonLoader\Il2CppAssemblies\UnityEngine.CoreModule.dll</HintPath>
     </Reference>
-    <Reference Include="PeroTools2, Version=3.5.0.2, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\PeroTools2.dll</HintPath>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\UnityEngine.TextCoreModule.dll</HintPath>
     </Reference>
-    <Reference Include="PeroTools2.Account, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\PeroTools2.Account.dll</HintPath>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\UnityEngine.TextRenderingModule.dll</HintPath>
     </Reference>
-    <Reference Include="PeroTools2.Resources">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\PeroTools2.Resources.dll</HintPath>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Sirenix.Serialization, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\Sirenix.Serialization.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="UnhollowerBaseLib">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnhollowerBaseLib.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.AnimationModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnityEngine.AnimationModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnityEngine.CoreModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\MelonLoader\Managed\UnityEngine.UIModule.dll</HintPath>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>D:\Steam\steamapps\common\Muse Dash\MelonLoader\Il2CppAssemblies\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="FavSave.cs" />
-    <Compile Include="FavManager.cs" />
-    <Compile Include="FavGirlMod.cs" />
-    <Compile Include="HiddenQoLTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>echo F|xcopy "$(ProjectDir)obj\Debug\FavGirl.dll" "C:\Program Files (x86)\Steam\steamapps\common\Muse Dash\Mods\FavGirl.dll" /Y</PostBuildEvent>
-  </PropertyGroup>
+
 </Project>
