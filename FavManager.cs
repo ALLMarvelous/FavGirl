@@ -158,7 +158,7 @@ namespace FavGirl
                         likeBtnGirl.graphic =
                             btnGirlObj.GetComponent<StageLikeToggle>().m_ImgLike.GetComponent<Image>();
                         likeBtnGirl.name = "TglLikeGirl";
-                        likeBtnGirl.transform.position = new Vector3(-6f, 1.75f, 100f);
+                        likeBtnGirl.transform.localPosition = new Vector3(700f, 340f, 100f);
                         likeBtnGirl.GetComponent<StageLikeToggle>().enabled = false;
                         Object.DestroyImmediate(btnGirlObj.GetComponent<StageLikeToggle>());
 
@@ -170,7 +170,7 @@ namespace FavGirl
                             if (trans.name == "ImgLikeOn") trans.gameObject.SetActive(true);
                         }
 
-                        var pnlRole = __instance.transform.parent.GetComponent<PnlRole>();
+                        var pnlRole = __instance.transform.parent.parent.GetComponent<PnlRole>();
 
                         likeBtnGirl.onValueChanged.AddListener((UnityAction<bool>)OnValueChangedGirl);
 
@@ -204,7 +204,7 @@ namespace FavGirl
                 else if (__instance.animName.Equals("CharScrollView") && likeBtnGirl != null)
                     try
                     {
-                        var pnlRole = __instance.transform.parent.GetComponent<PnlRole>();
+                        var pnlRole = __instance.transform.parent.parent.GetComponent<PnlRole>();
                         var cell = pnlRole.m_FancyPanel.GetCellComponent<PnlRoleSubControl>();
                         likeBtnGirl.gameObject.SetActive(ValidGirl(cell != null ? cell.m_RoleIndex : (int)GirlID.NONE));
                     }
@@ -223,7 +223,7 @@ namespace FavGirl
                         likeBtnElfin.graphic =
                             btnElfinObj.GetComponent<StageLikeToggle>().m_ImgLike.GetComponent<Image>();
                         likeBtnElfin.name = "TglLikeElfin";
-                        likeBtnElfin.transform.position = new Vector3(-3f, 3.4f, 100f);
+                        likeBtnElfin.transform.localPosition = new Vector3(700f, 340f, 100f);
                         likeBtnElfin.GetComponent<StageLikeToggle>().enabled = false;
                         Object.DestroyImmediate(btnElfinObj.GetComponent<StageLikeToggle>());
 
@@ -278,36 +278,56 @@ namespace FavGirl
         {
             if (_instance == null) return;
 
-            var pnlRole = _instance.transform.parent.GetComponent<PnlRole>();
+            var pnlRole = _instance.transform.parent.parent.GetComponent<PnlRole>();
 
-            if(val) {
+            if (val)
+            {
                 var cell = pnlRole.m_FancyPanel.GetCellComponent<PnlRoleSubControl>(-1);
-                if(cell == null || !ValidGirl(cell.m_RoleIndex)) {
+                if (cell == null || !ValidGirl(cell.m_RoleIndex))
+                {
                     // reimu
                     FavGirlMelon.instance.LoggerInstance.Msg("Did you really think you could fool me?");
                     FavSave.FavGirl = GirlID.NONE;
-                } else {
+                }
+                else
+                {
                     var girlIdx = cell.m_RoleIndex;
                     FavSave.FavGirl = (GirlID)girlIdx;
                 }
-            } else {
+            }
+            else
+            {
                 FavSave.FavGirl = GirlID.NONE;
             }
         }
 
         private static void OnUpdatePositionGirl(float val)
         {
-            if (_instance == null)return;
+            if (_instance == null)
+            {
+                FavGirlMelon.instance.LoggerInstance.Error("Instance is null");
+                return;
+            }
 
-            var pnlRole = _instance.transform.parent.GetComponent<PnlRole>();
+            var pnlRole = _instance.transform.parent.parent.GetComponent<PnlRole>();
+
+            if (pnlRole == null)
+            {
+                FavGirlMelon.instance.LoggerInstance.Error("PnlRole is null");
+                return;
+            }
 
             var cell = pnlRole.m_FancyPanel.GetCellComponent<PnlRoleSubControl>(-1);
-            if(cell != null) {
+            if (cell != null)
+            {
                 var girlIdx = cell.m_RoleIndex;
-                if(!ValidGirl(girlIdx)) {
+                if (!ValidGirl(girlIdx))
+                {
                     // reimu or new chars
-                    likeBtnGirl.gameObject.SetActive(false);
-                } else if(!likeBtnGirl.gameObject.activeSelf) {
+                    likeBtnGirl.gameObject.SetActive(false); return;
+                }
+                else if (!likeBtnGirl.gameObject.activeSelf)
+                {
                     likeBtnGirl.gameObject.SetActive(true);
                 }
                 likeBtnGirl.SetIsOnWithoutNotify((GirlID)girlIdx == FavSave.FavGirl);
@@ -651,7 +671,6 @@ namespace FavGirl
         {
             if (FavSave.FavElfin != ElfinID.NONE)
             {
-                FavGirlMelon.instance.LoggerInstance.Msg("Replace Battle Elfin");
                 oldElfin = GlobalDataBase.s_DbBattleStage.m_SelectedElfin;
                 GlobalDataBase.s_DbBattleStage.m_SelectedElfin = (int)FavSave.FavElfin;
             }

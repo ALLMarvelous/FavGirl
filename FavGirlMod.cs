@@ -10,9 +10,9 @@ namespace FavGirl
         public const string Description =
             "Adds the ability to 'favorite' a girl and/or elfin to lock in their visuals.";
 
-        public const string Author = "RobotLucca";
+        public const string Author = "RobotLucca & AshtonMemer";
         public const string Company = null;
-        public const string Version = "2.4.1";
+        public const string Version = "2.4.2";
         public const string DownloadLink = null;
     }
 
@@ -25,6 +25,12 @@ namespace FavGirl
         {
             instance = this;
             FavSave.Load();
+        }
+
+        public override void OnApplicationQuit()
+        {
+            base.OnApplicationQuit();
+            MelonPreferences.Save();
         }
     }
 }

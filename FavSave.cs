@@ -60,8 +60,16 @@ namespace FavGirl
                 "Whether to automatically hide girl/elfin choices when the ability matches the victory screen.\nFor if you want to get vanilla victory screens."
             );
 
-            if (!Enum.IsDefined(typeof(GirlID), favGirl.Value)) FavGirl = GirlID.NONE;
-            if (!Enum.IsDefined(typeof(ElfinID), favElfin.Value)) FavElfin = ElfinID.NONE;
+            if (!Enum.IsDefined(typeof(GirlID), favGirl.Value))
+            {
+                FavGirlMelon.instance.LoggerInstance.Msg($"Favorite girl not defined");
+                FavGirl = GirlID.NONE;
+            }
+            if (!Enum.IsDefined(typeof(ElfinID), favElfin.Value))
+            {
+                FavGirlMelon.instance.LoggerInstance.Msg($"Favorite elfin not defined");
+                FavElfin = ElfinID.NONE;
+            }
         }
     }
 
@@ -97,6 +105,7 @@ namespace FavGirl
         AMIYA = 22,
         MIKU_HATSUNE = 25
         // RIN_LEN = 26
+        // RACER = 27
     }
 
     // List of valid Elfins selectable as favorites
@@ -115,8 +124,8 @@ namespace FavGirl
         DRAGON = 6,
         LILITH = 7,
         PAIGE = 8,
-
-        SILENCER = 9
+        SILENCER = 9,
         // NEON_EGG = 10
+        BETAGO = 11
     }
 }
