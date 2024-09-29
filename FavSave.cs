@@ -103,9 +103,10 @@ namespace FavGirl
         MARIJA_SISTER = 20,
         MARISA = 21,
         AMIYA = 22,
-        MIKU_HATSUNE = 25
+        MIKU_HATSUNE = 25,
         // RIN_LEN = 26
         // RACER = 27
+        BALLERINA = 28
     }
 
     // List of valid Elfins selectable as favorites
