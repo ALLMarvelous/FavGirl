@@ -106,7 +106,8 @@ namespace FavGirl
         MIKU_HATSUNE = 25,
         // RIN_LEN = 26
         // RACER = 27
-        BALLERINA = 28
+        BALLERINA = 28,
+        WISADEL = 29
     }
 
     // List of valid Elfins selectable as favorites
