@@ -12,7 +12,7 @@ namespace FavGirl
 
         public const string Author = "RobotLucca & AshtonMemer";
         public const string Company = null;
-        public const string Version = "2.4.5";
+        public const string Version = "2.4.6";
         public const string DownloadLink = null;
     }
 
