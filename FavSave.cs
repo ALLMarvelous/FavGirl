@@ -110,7 +110,8 @@ namespace FavGirl
         WISADEL = 29,
         DIVINE_GEAR = 30,
         BURO_VAMPIRE = 31,
-        RIN_PIRATE = 32
+        RIN_PIRATE = 32,
+        BURO_DIVER = 33
     }
 
     // List of valid Elfins selectable as favorites
