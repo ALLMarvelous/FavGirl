@@ -105,13 +105,15 @@ namespace FavGirl
         AMIYA = 22,
         MIKU_HATSUNE = 25,
         // RIN_LEN = 26
-        // RACER = 27
-        BALLERINA = 28,
+        // RIN_RACER = 27
+        MARIJA_BALLERINA = 28,
         WISADEL = 29,
         DIVINE_GEAR = 30,
         BURO_VAMPIRE = 31,
         RIN_PIRATE = 32,
-        BURO_DIVER = 33
+        BURO_DIVER = 33,
+        MARIJA_HORSE = 34,
+        MARIJA_GHOST = 35
     }
 
     // List of valid Elfins selectable as favorites
